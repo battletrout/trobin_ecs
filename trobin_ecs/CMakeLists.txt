@@ -3,7 +3,7 @@
 #
 
 # Add source to this project's executable.
-add_executable (trobin_ecs "trobin_ecs.cpp" "trobin_ecs.h")
+add_executable (trobin_ecs "src/main.cpp" "src/main.h" "src/StdTemplatePractice.cpp"   "src/EntityManager.h")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET trobin_ecs PROPERTY CXX_STANDARD 20)
