@@ -10,16 +10,7 @@ Binary signatures
 - - int32 ID: [0..4,294,967,295]
 - Every 
 
-Entity Management
-- Comparing to Unity's DOTS ECS:
-https://docs.unity3d.com/Packages/com.unity.entities@1.0/manual/concepts-archetypes.html
-I don't like the way Unity's DOTS ECS is averse to ""structural changes"" (adding/removing components, deleting entities, adding entities) due to storing all of the arrays of data associated with an archetype in a single contiguous block of 16KiB. 
-- Is there a way to be more flexible with adding and removing components during each game tick?
-- Can I ensure structural changes are staged throughout the tick, then they all execute at the beginning of the following tick (I think they do that with their "command cache")?
-- - Would I be able to parallelize that? Maybe, but if the memory access is the 
-- - Can structural changes be spread across multiple ticks if there are a lot of them at once?
-- - - Maybe not, this would mean we would have to check if components/entities are active each cycle which would limit pre-fetching and SIMD...
-- Rather than having multiple arrays of 
+
 
 Archetypes managed with:
 	(1) Map of archetypes, where the key corresponds to the Archetype ID and the value is a pointer to: 
@@ -28,7 +19,24 @@ Archetypes managed with:
 
 Use curiously recurring template (CRTP) for adding and removing components?
 https://www.youtube.com/watch?v=oTMdwsbPAaA
+- No, that will mean that the components of entities are stored contiguously, but inefficiently for systems to access multiple components
 
 Check out how Dave Churchill recommends managing memory etc.
 https://www.youtube.com/watch?v=IF1YHCvMP54&list=PL_xRyXins84_Jf-aCh7chj47HR4oZLPwK&index=20
+	1. Definitely store arrays of contiguous components. 65 mults in the time of 1 cache miss.
+	2. Memory pooling- try to allocate all memory at start, then work within the bounds of the memory allocated. 
+		a. Vector.reserve(size) leaves room for malloc if necessary
 
+
+
+
+
+Comparing to Unity's DOTS ECS:
+https://docs.unity3d.com/Packages/com.unity.entities@1.0/manual/concepts-archetypes.html
+I don't like the way Unity's DOTS ECS is averse to ""structural changes"" (adding/removing components, deleting entities, adding entities) due to storing all of the arrays of data associated with an archetype in a single contiguous block of 16KiB. 
+- Is there a way to be more flexible with adding and removing components during each game tick?
+- Can I ensure structural changes are staged throughout the tick, then they all execute at the beginning of the following tick (I think they do that with their "command cache")?
+- - Would I be able to parallelize that? Maybe, but if the memory access is the 
+- - Can structural changes be spread across multiple ticks if there are a lot of them at once?
+- - - Maybe not, this would mean we would have to check if components/entities are active each cycle which would limit pre-fetching and SIMD...
+- Rather than having multiple arrays of 
