@@ -1,0 +1,18 @@
+https://www.youtube.com/watch?v=UTii4dyhR5c
+
+Malloc for a block of memory at the start, keep all blocks same size 
+
+Blocks:
+- Least Significant Bit (LSB) 1 if allocated, 0 if not.
+- Add block size to pointer of header to get to pointer of next block size
+- Crawl list to find unallocated blocks
+
+Doubly Linked List: Explicit free list
+- Header Pointer - 4 should be footer of a block, allows 
+
+https://www.youtube.com/watch?v=Vch7_YeGKH4
+
+Malloc()
+- Allocate single large block of contiguous mem
+- (void*)malloc(size_t size)
+- - returns pointer to the first byte of allocated memory

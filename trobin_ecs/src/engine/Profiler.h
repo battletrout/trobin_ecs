@@ -47,7 +47,7 @@ class Profiler {
 		//Write JSON header
 		_outputStream = std::ofstream(_outputFile);
 		writeHeader();
-		std::cout << "Profiler Created";
+		std::cout << "Profiler Created\n";
 	}
 	
 	void writeHeader() { _outputStream << "{\"otherData\": {},\"traceEvents\":["; }

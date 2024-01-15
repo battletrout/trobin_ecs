@@ -1,0 +1,124 @@
+Deciding whether to use uint32_t, int32_t, size_t, or int for Archetype identifiers.
+(uint64_t for curiosity as well, but I won't use that one because it will be slower in 32bit OS's). I read a stackoverflow article that said uint was slower than int because loops weren't unrolled for whatever reason.
+
+**tl;dr uint32_t is the winner.** there's no speed difference with this compiler and I don't want to deal with issues if I want to be able to use addition and subtraction, which will cause problems in twos complements.
+
+21 runs each of TstTimer::timerTest(0) which runs through a LFSR 1Bn times, doing a few bitwise operations then outputting the total time in Microseconds. Takes input of 0 from keyboard, which is used to make sure the compiled exe actually runs the code (rather than optimizing it out because the result is static)
+
+Now wrapped into TstTimer::runTimerTest()
+
+Benchmarking with auto: Runtime (should be size_t)
+Input 0 for time, 
+3189240
+3162568
+3175254
+3198205
+3180648
+3201453
+3177590
+3187026
+3206115
+3203236
+3196696
+3192139
+3193824
+3182209
+3195493
+3193224
+3187808
+3189027
+3206320
+3241287
+3241205
+
+Benchmarking with uint32_t: runtime
+2867273
+2838721
+2851953
+2870336
+2856387
+2877412
+2875538
+2879087
+2854255
+2859053
+2867513
+2861998
+2852754
+2840656
+2850347
+2875755
+2867688
+2859510
+2864516
+2883699
+2852619
+
+Benchmarking with int32_t: runtime
+2878838
+2861659
+2843974
+2850237
+2822701
+2837144
+2836929
+2845393
+2844388
+2856199
+2836602
+2826934
+2825237
+2829392
+2839948
+2823061
+2829880
+2834715
+2829116
+2819859
+2856136
+
+Benchmarking with int: runtime
+2919583
+2854730
+2851564
+2860970
+2845388
+2844047
+2852498
+2837053
+2834140
+2877362
+2845066
+2813160
+2854293
+2858744
+2861176
+2844556
+2842871
+2844034
+2834204
+2844868
+2838783
+
+benchmarking with uint64_t: runtime
+2854838
+2819114
+2822518
+2839777
+2863631
+2829547
+2836232
+2850566
+2817646
+2831198
+2842297
+2836397
+2873452
+2841061
+2832391
+2843361
+2867887
+2824022
+2832944
+2845115
+2832765

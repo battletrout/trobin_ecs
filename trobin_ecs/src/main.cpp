@@ -18,7 +18,6 @@ struct cat {
 int main()
 {
 	PROFILE_FUNCTION();
-	timerTest();
-
+	runTimerTest();
 	return 0;
 }
