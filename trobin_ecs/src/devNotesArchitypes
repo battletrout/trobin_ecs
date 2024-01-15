@@ -1,0 +1,12 @@
+
+Architype management probably is going to require MetaFunctions. Tuples of components too, maybe.
+- Rather than hard-coding every possible combination of elements, I could have a MetaFunction that takes a tuple of all the component types and knows how to:
+- - calculate size of arrays and
+- - lay the arrays of components in its memory block
+
+https://www.youtube.com/watch?v=_yqIdYBdyPo&t=69s
+In MetaPrograms:
+decltype(t) returns the typeof t
+
+No std::find
+No for/while loops in template metaprograms, use recursion

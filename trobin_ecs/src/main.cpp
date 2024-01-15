@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <map>
-
+#include <tuple>
 
 #include "main.h"
 #include "engine/Logger.h"
@@ -26,48 +26,25 @@
 
 //using namespace std;
 
-/*
-//When multiple specializations are provided, the most specific one is chosen
-template<typename KEY, typename DATA>
-struct Qmap {
-	//default implementation
-	Qmap() { std::cout << "Qmap default\n"; }
+//template<typename SEARCH, typename TUPLE, size_t start_from=0>
+//struct contains_type :
+//	if_< //IF
+//		std::is_same<std::tuple_element_t<start_from, TUPLE>, SEARCH>::value,
+//		//THEN
+//		https://www.youtube.com/watch?v=_yqIdYBdyPo&t=69s
 
-	
-		Qmap(KEY a, DATA b)
-	{
-		std::cout << "Qmap default\n";
+bool contains_type(const std::string& SEARCH, const std::vector<std::string>& v, size_t start_from = 0) {
+	if (v[start_from] == SEARCH) {
+		return true;
 	}
+	//else {
 
-
-};
-
-template<typename DATA>
-struct Qmap<int, DATA> {
-	Qmap(int a, DATA b) {
-		std::cout << typename(KEY) << " " << KEY << "; "
-			<< typename(DATA) << " " << DATA
-	}
-};
-	auto default_ = Qmap<int, bool>{};
-	auto default1 = Qmap{ 5, 3 };
-*/
-
-template<typename A, typename B, typename C>
-void print3(A a, B b, C c) {
-	std::cout << "a: " << a << "; "
-		<< "b: " << b << "; "
-		<< "c: " << c << "\n";
+	//}
 }
 
 int main()
 {
-	//PROFILE_FUNCTION();
-	
-	print3(1, 2, 3);
-	std::string hello = "catbird";
-	print3(hello, 4, hello);
-;
+	std::vector<std::string> t{ "int", "bool", "float" };
 
 	return 0;
 }
