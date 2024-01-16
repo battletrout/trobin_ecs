@@ -4,9 +4,22 @@ Architype management probably is going to require MetaFunctions. Tuples of compo
 - - calculate size of arrays and
 - - lay the arrays of components in its memory block
 
+
+
 https://www.youtube.com/watch?v=_yqIdYBdyPo&t=69s
 In MetaPrograms:
 decltype(t) returns the typeof t
 
 No std::find
 No for/while loops in template metaprograms, use recursion
+
+
+Variadic Templates accept an arbitrary number of arguments of varying types
+https://www.youtube.com/watch?v=GusZ4P_iTks&t=30s
+The examples here don't use perfect forwarding.
+Perfect forwarding deals with the problem of rvalues vs lvalues, whether something is a reference or the object, etc.
+- lvalues have a defined region of storage, and can provide an address
+- rvalues do not, and include literals, results of operators, and function calls that return nonreferences. Does not necessarily have storage associated w/ it.
+
+Perfect Forwarding video:
+https://www.youtube.com/watch?v=c5dQX6GV_4g
