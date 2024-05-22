@@ -1,6 +1,6 @@
 # trobin_ecs
-I want to give myself a refresher on working with data structures and the C++ standard library.
-I also really like the Entity, Components, and Systems (ECS) design pattern. I decided to make my own.
+Practicing architecture (currently a lot of variadic templates) with C++ in the form of a sparse ECS game engine. 
+Intended to be a better version of https://github.com/battletrout/SDLPhysics2DPlatformer architecturally.
 
 ## What's in the name? 
 
