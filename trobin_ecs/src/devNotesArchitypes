@@ -1,3 +1,24 @@
+Entity ID:
+- 8-bit mem. block ID, 24-bit 
+
+High-density, low-variance entities ("Sparse Archetypes")
+- 
+
+** PROBABLY NOT WORTH PURSUING** Low-density, high-variance entities ("Saturated Archetype"):
+- Have a collection of arrays that have all possible components for managing a few high-variance entities
+	- e.g. the signature for the architype is 1111 1111 1111 1111 1111 1111 1111 1111
+- There would also be an additional component that would represent the actual archetype of the given entity
+	- e.g. 
+
+** PROBABLY NOT WORTH PURSUING** Managing the Saturated Archetype:
+- Option 1: Every cycle, count the number of each type of archetype, if count(x) > y, create a new archetype?
+- Option 2: Run a daemon in the background that counts the number of entities created per archetype
+	- Once it gets above 
+
+- 
+
+
+***Below From Jan 16, 2024***
 
 Architype management probably is going to require MetaFunctions. Tuples of components too, maybe.
 - Rather than hard-coding every possible combination of elements, I could have a MetaFunction that takes a tuple of all the component types and knows how to:
@@ -23,3 +44,7 @@ Perfect forwarding deals with the problem of rvalues vs lvalues, whether somethi
 
 Perfect Forwarding video:
 https://www.youtube.com/watch?v=c5dQX6GV_4g
+
+Cont'd May 11, 2024:
+- Singleton Architype Manager:
+	- Have an array of uint32, where each 

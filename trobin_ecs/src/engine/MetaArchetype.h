@@ -1,31 +1,28 @@
-﻿// trobin_ecs.cpp : Defines the entry point for the application.
-//
+#pragma once
 
 #include <iostream>
 #include <map>
 #include <tuple>
 
-#include "main.h"
-#include "engine/Logger.h"
-#include "engine/Timer.h"
-#include "utils/MathUtils.h"
+
+#include "../engine/Logger.h"
+#include "../engine/Timer.h"
+#include "../utils/MathUtils.h"
 
 // DEBUG {
 
 
-#include "engine/Profiler.h"
-#include "test/TstTimer.h"
+#include "../engine/Profiler.h"
+#include "../test/TstTimer.h"
 
 // } DEBUG
 
-//Practice {
-#include <type_traits>
-//#include "practice/MemoryPool.h"
+/*
+Define MetaTemplates that will be used to generate archetypes 
 
-#include <array>
-// } Practice
 
-//using namespace std;
+*/
+
 
 
 ////////////////////////////////////////////
@@ -50,14 +47,12 @@ void printn(LAST t) {
 	std::cout << t << "\n";
 }
 
-
-
 //printn function: take an arbitrary number of inputs, print them all
 //ellipsis indicates any number of types, rest is all the remaining args
 // ...T1toN means variable # of elements
 // rest... means expand name to a list of all elements it represents
 // T1toN ... rest means rest is a list of params given by T1toN
-template<typename T0, typename ... T1toN>	
+template<typename T0, typename ... T1toN>
 void printn(T0 t, T1toN ... rest) {
 	std::cout << t << ", ";
 	printn(rest...);
@@ -87,9 +82,9 @@ void print_tuple(TUPLE t) {
 //Template that accepts three variables of any type that can be printed
 template<typename A, typename B, typename C>
 void print3(A& a, B& b, C& c) {
-	std::cout << "a: " << typeid(a).name() << "; "
-		<< "b: " << typeid(b).name() << "; "
-		<< "c: " << typeid(c).name() << "\n";
+	std::cout << "a: " << typeid(A).name << "; "
+		<< "b: " << typeid(B).name << "; "
+		<< "c: " << typeid(c).name << "\n";
 }
 
 ///////////////////////////////////////////////////////
@@ -124,7 +119,7 @@ uint32_t total_size(T0 t, T1toN ... rest) {
 
 ///////////////////////////////////////////////////////
 //VARIADIC TEMPLATES 5
-//size_tupe function: take a tuple of arbitraty length, return total size in bytes of all the elements
+//size_tuple function: take a tuple of arbitraty length, return total size in bytes of all the elements
 ///////////////////////////////////////////////////////
 
 template<typename TUPLE, std::size_t ... indices>
@@ -144,7 +139,7 @@ uint32_t size_tuple(TUPLE t) {
 int main()
 {
 	printn(9, "hello");
-	
+
 	auto t = std::make_tuple(1, 4, "hello123123123123", 4.3f, 4.3f, uint16_t(12), long{}, long(1231), long(1231), long(1231), long(1231));
 	print_tuple(t);
 
@@ -153,14 +148,10 @@ int main()
 	printn(u);
 	printn(sizeof(t));
 
-
 	Vec2 cat{ 2.3,42.1 };
 	std::string mouse{ "asdasd123aqweasdfgesadfse" };
-	
-	uint32_t bird{ 2 };
 
-	print3(bird, cat, mouse);
+	print3(t, cat, mouse);
 
-	decltype(bird) cow{ 23 };
 	return 0;
 }
