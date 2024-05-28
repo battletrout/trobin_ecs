@@ -1,12 +1,21 @@
 #pragma once
 
 #include <string>
+//SDL
+/*
 #include <SDL.h>
 #include <SDL_image.h>
+*/
 
-#include "Component.h"
-#include "MathUtils.h"
+#include "../utils/MathUtils.h"
 
+class Component
+{
+	//TODO: Define logic for automatically assigning a new binSignature when a component is created for the first time
+public:
+	uint32_t binSignature{};
+};
+/*
 class CSprite : public Component
 {
 public:
@@ -21,6 +30,8 @@ public:
 	// the pointer to the texture file in mem that is to be rendered
 	SDL_Texture* tex;
 };
+*/
+
 
 class CTranslate : public Component
 // vel, accel, angular vel, angular accel
@@ -90,7 +101,7 @@ class CCircleCollider : public Component
 	{}
 };
 
-class CLifespan
+class CLifespan : public Component
 {
 public:
 	int remaining	= 0;
@@ -101,7 +112,7 @@ public:
 	{}
 };
 
-class CInput
+class CInput : public Component
 {
 public:
 	bool up = false;
