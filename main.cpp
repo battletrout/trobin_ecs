@@ -6,15 +6,15 @@
 #include <tuple>
 
 #include "main.h"
-#include "engine/Logger.h"
-#include "engine/Timer.h"
-#include "utils/MathUtils.h"
+
+#include "src/utils/MathUtils.h"
 
 // DEBUG {
+#include "tools/Logger.h"
+#include "tools/Timer.h"
 
-
-#include "engine/Profiler.h"
-#include "test/TstTimer.h"
+#include "tools/Profiler.h"
+#include "tools/TstTimer.h"
 
 // } DEBUG
 

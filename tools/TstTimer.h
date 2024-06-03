@@ -1,6 +1,6 @@
 #pragma once
-#include "../engine/Profiler.h"
-#include "../engine/Timer.h"
+#include "Profiler.h"
+#include "Timer.h"
 
 
 
