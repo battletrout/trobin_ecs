@@ -7,7 +7,8 @@
 
 #include "main.h"
 
-#include "src/utils/MathUtils.h"
+#include "src/engine/ecs/utils/MathUtils.h"
+#include "src/engine/Archetype.h"
 
 // DEBUG {
 #include "tools/Logger.h"
@@ -27,6 +28,7 @@
 
 //using namespace std;
 
+/*
 
 ////////////////////////////////////////////
 // NOTE THESE VARIADIC TEMPLATES PASS BYVAL WHICH IS INEFFICIENT. WE NEED TO IMPLEMENT PERFECT FORWARDING.
@@ -139,13 +141,15 @@ uint32_t size_tuple(TUPLE t) {
 	// we pass in a sequence of indices, then size_tuple_impl will run printn() for get<0..N>
 	return size_tuple_impl(t, std::make_index_sequence<std::tuple_size<TUPLE>::value>{});
 }
-
+*/
 
 int main()
 {
-	printn(9, "hello");
-	
+
 	auto t = std::make_tuple(1, 4, "hello123123123123", 4.3f, 4.3f, uint16_t(12), long{}, long(1231), long(1231), long(1231), long(1231));
+	
+	Archetype<std::tuple<>,123123> cat = new Archetype<std::tuple<>,123123>;
+	
 	print_tuple(t);
 
 

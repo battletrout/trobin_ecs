@@ -7,7 +7,7 @@
 #include <SDL_image.h>
 */
 
-#include "../utils/MathUtils.h"
+#include "utils/MathUtils.h"
 
 class Component
 {
